@@ -18,11 +18,18 @@ app.listen(port, () => {
 app.get('/', (req, res) => {
   res.send(`
     <h1>${tunnelName} pi monitor </h1>
-    <p>System Memory: ${os.freemem()/1024/1024}Mb free out of ${os.totalmem()/1024/1024}Mb</p>
+    <p>System Memory: ${os.freemem()/1024/1024}Mb free out of ${os.totalmem()/1024/1024}Mb (${(100*os.freemem()/os.totalmem()).toFixed(1)}%)</p>
     <p>Heap Memory: ${JSON.stringify(process.memoryUsage())}</p>
     <p>System CPU load: ${os.loadavg()}</p>
     <p>Process CPU: ${JSON.stringify(process.cpuUsage())}</p>
-    <p>System Uptime: ${os.uptime()}s</p>
-    <p>Process Uptime: ${process.uptime()}s</p>
+    <p>System Uptime: ${secondsToHms(os.uptime())}</p>
+    <p>Process Uptime: ${secondsToHms(process.uptime())}</p>
   `)
 })
+
+const secondsToHms = (seconds) => {
+  const days = Math.floor(seconds/24/60/60)
+  var hhmmss = new Date(null);
+  hhmmss.setSeconds(seconds);
+  return `${days}d ${hhmmss.toISOString().substr(11, 8)}`
+}
