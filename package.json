@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "express": "^4.16.2",
+    "express-basic-auth": "^1.1.4",
     "localtunnel": "^1.8.3"
   }
 }

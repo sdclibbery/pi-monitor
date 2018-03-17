@@ -1,6 +1,8 @@
 const express = require('express')
 const localtunnel = require('localtunnel')
 const os =  require('os')
+const basicAuth = require('express-basic-auth')
+const bcrypt = require('bcrypt')
 
 const port = 8000
 const tunnelName =  os.hostname().toLowerCase().replace(/[^a-z0-9]/g, '')
@@ -8,11 +10,23 @@ const localtunnelSubdomain = `sdclibbery${tunnelName}`
 console.log(localtunnelSubdomain)
 const app = express()
 
+app.use(basicAuth({
+    authorizer: (username, password) => {
+      return username == 'steve' && bcrypt.compareSync(password, '$2a$10$SqywWBhDP76FSYQN/cqcw.aGdYKByNKPbI.XRsdbu.crXb7kuXhJi')
+    },
+    challenge: true,
+    realm: '7ygTF9DFgTh',
+}))
+
 app.listen(port, () => {
   console.log('pi-monitor listening on port '+port)
   localtunnel(port, { subdomain: localtunnelSubdomain }, (err, tunnel) => {
     console.log('localtunnel: ', err || (tunnel && tunnel.url))
   })
+})
+
+app.get('/bots', (req, res) => {
+  res.send(`placeholder`)
 })
 
 app.get('/', (req, res) => {
