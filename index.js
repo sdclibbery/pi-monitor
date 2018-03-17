@@ -18,7 +18,9 @@ app.use(basicAuth({
     realm: '7ygTF9DFgTh',
 }))
 
-app.get('/', require('./page-system-monitor').render)
+app.get('/', require('./page-home').render)
+app.get('/system', require('./page-system-monitor').render)
+app.get('/bot', require('./page-bot').render)
 
 app.listen(port, () => {
   console.log('pi-monitor listening on port '+port)
