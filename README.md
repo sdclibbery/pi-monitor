@@ -3,7 +3,7 @@ x install https://github.com/localtunnel/localtunnel and run from inside THIS ap
  x Use machine hostname for subdomain (with 'sdclibbery' prefix)
 x Simple page that gets the pi CPU load, memory stats, heap status, disk space etc
 x Authentication
-* Force access via https only: https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security
+x Extract pages out to their own files
 * Can run bot from a page
 * And see logs as it runs
 * Page that lists running bots with status and progress
