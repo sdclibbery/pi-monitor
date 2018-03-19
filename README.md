@@ -4,8 +4,16 @@ x install https://github.com/localtunnel/localtunnel and run from inside THIS ap
 x Simple page that gets the pi CPU load, memory stats, heap status, disk space etc
 x Authentication
 x Extract pages out to their own files
+* See logs of running bots
+
 * Can run bot from a page
-* And see logs as it runs
+const { spawn } = require('child_process');
+const subprocess = spawn(process.argv[0], ['child_program.js'], {
+  detached: true,
+  stdio: 'ignore'
+});
+subprocess.unref();
+
 * Page that lists running bots with status and progress
 
 Need bots to be reentrant - ie able to restart without losing state - for this:
