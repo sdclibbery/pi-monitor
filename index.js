@@ -22,6 +22,8 @@ app.get('/', require('./page-home').render)
 app.get('/system', require('./page-system-monitor').render)
 app.get('/bot', require('./page-bot').render)
 app.get('/bot/log/:logFile', require('./page-bot').renderLog)
+app.post('/bot/start/:bot', require('./page-bot').start)
+app.post('/bot/stop/:bot', require('./page-bot').stop)
 
 app.listen(port, () => {
   console.log('pi-monitor listening on port '+port)
