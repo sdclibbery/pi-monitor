@@ -55,7 +55,7 @@ exports.start = (req, res) => {
 
 exports.stop = (req, res, next) => {
   getPidsFor(req.params.bot).then((procs) => {
-    procs.map(process.kill)
+    procs.map(p => process.kill(p, 'SIGKILL'))
     res.redirect(`/bot/log/${req.params.bot}.log`)
   }).catch(next)
 }
