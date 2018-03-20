@@ -5,6 +5,8 @@ x Simple page that gets the pi CPU load, memory stats, heap status, disk space e
 x Authentication
 x Extract pages out to their own files
 * See logs of running bots
+ ! tradr dir not working on pi...
+  ? Can we set the cwd for the cron job?
 
 * Can run bot from a page
 const { spawn } = require('child_process');
