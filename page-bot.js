@@ -29,7 +29,7 @@ const botList = async () => {
 }
 
 const postButton = (link, title) => {
-  return `<form style="display:inline" action="${link}" method="post"><input type="submit" value="${title}"></form>`
+  return `<form style="display:inline" action="${link}" method="post"><input type="text" name="args"><input type="submit" value="${title}"></form>`
 }
 
 const getPidsFor = async (bot) => {
@@ -44,7 +44,9 @@ exports.renderLog = (req, res) => {
 }
 
 exports.start = (req, res) => {
-  const subprocess = spawn(process.argv[0], [req.params.bot], {
+  const args = req.body.args.split(' ')
+  args.unshift(req.params.bot)
+  const subprocess = spawn(process.argv[0], args, {
     cwd: '../tradr',
     detached: true,
     stdio: 'ignore',

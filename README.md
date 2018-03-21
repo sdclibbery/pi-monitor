@@ -7,8 +7,11 @@ x Extract pages out to their own files
 x See logs of bots
 x Can start a bot
 x Can stop a bot
-* Bot log pages live update and show latest entries on opening
-* Can choose minimum log level to show on log page
+* Can set arguments when starting a bot
+* Can choose minimum log level to show on log page - default to warn
+* Can clear logs
+* Bot log pages live update
+* Bot log pages show latest entries on opening
 * Page that lists running bots with status and progress
 
 Need bots to be reentrant - ie able to restart without losing state - for this:
