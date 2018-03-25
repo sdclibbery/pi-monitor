@@ -44,7 +44,7 @@ exports.renderLog = (req, res) => {
 }
 
 exports.start = (req, res) => {
-  const args = req.body.args.split(' ')
+  const args = req.body.args.split(' ').filter(a => a !== null && a !== '')
   args.unshift(req.params.bot)
   const subprocess = spawn(process.argv[0], args, {
     cwd: '../tradr',
