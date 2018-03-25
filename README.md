@@ -7,10 +7,11 @@ x Extract pages out to their own files
 x See logs of bots
 x Can start a bot
 x Can stop a bot
-* Can choose minimum log level to show on log page - default to info
+x Format log blocks based on level
+* Can clear logs
 * Can set arguments when starting a bot
  ! Fix forms...
-* Can clear logs
+* Can switch which log levels are hidden on log page
 * Bot log pages live update
 * Bot log pages show latest entries on opening
 * Page that lists running bots with status and progress
