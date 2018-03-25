@@ -36,13 +36,6 @@ const getPidsFor = async (bot) => {
   return (await findProcess('name', bot)).map(p => p.pid)
 }
 
-exports.renderLog = (req, res) => {
-  res.send(frame(`
-    <h1>${req.params.logFile}</h1>
-    <pre>${fs.readFileSync(`../tradr/${req.params.logFile}`)}</pre>
-  `))
-}
-
 exports.start = (req, res) => {
   const args = req.body.args.split(' ').filter(a => a !== null && a !== '')
   args.unshift(req.params.bot)
