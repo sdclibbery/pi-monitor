@@ -5,15 +5,20 @@ const util = require('util')
 exports.render = async (req, res, next) => {
   const log = (await util.promisify(fs.readFile)(`../tradr/${req.params.logFile}`)).toString()
   res.send(frame(`
-    <h1>${req.params.logFile}</h1>
     <style>
-    pre { background-color:#fcfcfc }
-    pre.debug { display:none; color:#888888; }
-    pre.info { color:#00529B; }
-    pre.warn { color:#9F6000; }
-    pre.error { color:#D8000C; }
+      pre { background-color:#fcfcfc }
+      pre.debug { display:none; color:#888888; }
+      pre.info { color:#00529B; }
+      pre.warn { color:#9F6000; }
+      pre.error { color:#D8000C; }
     </style>
-    ${format(log)}
+    <script>
+      window.onload = function () { window.scrollTo(0, document.body.scrollHeight); };
+    </script>
+    <h1>${req.params.logFile}</h1>
+    <div id="log-content">
+      ${format(log)}
+    </div>
   `))
 }
 

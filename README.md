@@ -9,7 +9,7 @@ x Can start a bot
 x Can stop a bot
 x Format log blocks based on level
 x Dont cache any pages
-* Bot log pages show latest entries on opening
+x Bot log pages show latest entries on opening
 * Can clear logs
 * Bot log pages live update
 * Can set arguments when starting a bot
