@@ -8,13 +8,15 @@ x See logs of bots
 x Can start a bot
 x Can stop a bot
 x Format log blocks based on level
+x Dont cache any pages
+* Bot log pages show latest entries on opening
 * Can clear logs
+* Bot log pages live update
 * Can set arguments when starting a bot
  ! Fix forms...
 * Can switch which log levels are hidden on log page
-* Bot log pages live update
-* Bot log pages show latest entries on opening
 * Page that lists running bots with status and progress
+* Handle missing log files more gracefully
 
 Need bots to be reentrant - ie able to restart without losing state - for this:
 * Active bot list
