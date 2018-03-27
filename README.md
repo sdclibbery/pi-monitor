@@ -10,11 +10,11 @@ x Can stop a bot
 x Format log blocks based on level
 x Dont cache any pages
 x Bot log pages show latest entries on opening
+x Can switch which log levels are hidden on log page
 * Can clear logs
 * Bot log pages live update
 * Can set arguments when starting a bot
  ! Fix forms...
-* Can switch which log levels are hidden on log page
 * Page that lists running bots with status and progress
 * Handle missing log files more gracefully
 

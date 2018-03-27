@@ -7,15 +7,30 @@ exports.render = async (req, res, next) => {
   res.send(frame(`
     <style>
       pre { background-color:#fcfcfc }
-      pre.debug { display:none; color:#888888; }
+      pre.debug { color:#888888; }
       pre.info { color:#00529B; }
       pre.warn { color:#9F6000; }
       pre.error { color:#D8000C; }
+      .header { position:sticky; top:0px; padding-bottom: 4px; background-color:#fefefec0; border-bottom:1px solid; }
     </style>
     <script>
-      window.onload = function () { window.scrollTo(0, document.body.scrollHeight); };
+      toggleLogLevel = function (level) {
+        for (let el of document.querySelectorAll('.'+level)) {
+          el.style.display = el.style.display == 'none' ? 'block' : 'none'
+        }
+      }
+      window.onload = function () {
+        toggleLogLevel('Debug')
+        window.scrollTo(0, document.body.scrollHeight)
+      }
     </script>
-    <h1>${req.params.logFile}</h1>
+    <div class="header">
+      <h1>${req.params.logFile}</h1>
+      <button onclick="javascript:toggleLogLevel('Debug')">Debug</button>
+      <button onclick="javascript:toggleLogLevel('Info')">Info</button>
+      <button onclick="javascript:toggleLogLevel('Warn')">Warn</button>
+      <button onclick="javascript:toggleLogLevel('Error')">Error</button>
+    </div>
     <div id="log-content">
       ${format(log)}
     </div>
