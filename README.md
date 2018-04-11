@@ -11,6 +11,9 @@ x Format log blocks based on level
 x Dont cache any pages
 x Bot log pages show latest entries on opening
 x Can switch which log levels are hidden on log page
+!? Setup a shutdown button: https://github.com/dhunink/RaspberryPiSafeShutdown/blob/master/safeShudown.py
+* Page to show live candles (getProductHistoricRates - call from client)
+* ? Need something (restartable) in monitor that can track candles and trigger bots automatically...
 * Can clear logs
 * Bot log pages live update
 * Can set arguments when starting a bot
@@ -18,7 +21,7 @@ x Can switch which log levels are hidden on log page
 * Page that lists running bots with status and progress
 * Handle missing log files more gracefully
 
-Need bots to be reentrant - ie able to restart without losing state - for this:
+Need bots to be restartable - ie able to restart without losing state - for this:
 * Active bot list
  * persisted
 * Run an active bot if its not running

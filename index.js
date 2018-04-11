@@ -27,6 +27,7 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({extended:false}));
 app.get('/', require('./page-home').render)
 app.get('/system', require('./page-system-monitor').render)
+app.get('/status', require('./page-status').render)
 app.get('/bot', require('./page-bot').render)
 app.post('/bot/start/:bot', require('./page-bot').start)
 app.post('/bot/stop/:bot', require('./page-bot').stop)

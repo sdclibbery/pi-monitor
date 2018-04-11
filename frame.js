@@ -6,8 +6,11 @@ exports.apply = (content) => `
     <title>${os.hostname()} pi monitor </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-      body{font-family:helvetica,sans-serif;}
-      a{margin:3px;padding:3px;border:1px solid #aaa;background-color:#eee;color:#111;border-radius:3px;text-decoration:none;} a:hover{background-color:#ddd;}
+      body {font-family:helvetica,sans-serif;}
+      a {margin:3px;padding:3px;border:1px solid #aaa;background-color:#eee;color:#111;border-radius:3px;text-decoration:none;} a:hover{background-color:#ddd;}
+      th { background-color: #e8e8e8; }
+      tr:nth-child(odd) { background-color: #f4f4f4; }
+      td { padding: 2px 8px 2px 8px; }
     </style>
   </head>
   <body>
