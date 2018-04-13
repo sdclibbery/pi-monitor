@@ -11,12 +11,17 @@ x Format log blocks based on level
 x Dont cache any pages
 x Bot log pages show latest entries on opening
 x Can switch which log levels are hidden on log page
-* Sort out / tidy up
- * Why do you have to stop+refresh after submitting an order?
+* Status page
  * Rename page to trade; split up and tidy
+ * Use js instead of form submission for cancel/make order
+ * Have 'are you sure' alert on cancelling orders
+ * Why do you have to stop+refresh after submitting an order?
+ * Error reporting for failed orders
+ * ? Leave price blank when ordering to pick next closest price automatically
 !? Setup a shutdown button: https://github.com/dhunink/RaspberryPiSafeShutdown/blob/master/safeShudown.py
 * Page to show live candles (getProductHistoricRates - call from client)
 * ? Need something (restartable) in monitor that can track candles and trigger bots automatically...
+* Show TA indicators: RSI, NVT
 * Can clear logs
 * Bot log pages live update
 * Can set arguments when starting a bot
