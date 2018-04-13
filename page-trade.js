@@ -3,7 +3,11 @@ const os =  require('os')
 const GdaxExchange = require('../tradr/gdax-exchange');
 
 exports.render = async (req, res, next) => {
-  const data = await fetchData()
+  const exchange = GdaxExchange.createExchange({}, {
+    debug: () => {},
+    error: console.log,
+  })
+  const data = await fetchData(exchange)
   res.send(frame(`
     <h1>${os.hostname()} GDAX status</h1>
     <h3>Accounts</h3>
@@ -59,15 +63,10 @@ const formatOrders = (orders) => {
     return '<table>'+rows+'</table>'
 }
 
-const exchange = GdaxExchange.createExchange({}, {
-  debug: () => {},
-  error: console.log,
-})
-
-const fetchData = async () => {
+const fetchData = async (exchange) => {
   const result = {}
   const accounts = await exchange.accounts()
-  const accountsWithValuesInEur = await decorateWithValue(accounts)
+  const accountsWithValuesInEur = await decorateWithValue(exchange, accounts)
   result.accounts = accountsWithValuesInEur
 
   result.totalValueInEur = accountsWithValuesInEur.reduce((s, a) => s + a.valueInEur, 0)
@@ -78,17 +77,17 @@ const fetchData = async () => {
   return result
 }
 
-const decorateWithValue = async (accounts) => {
+const decorateWithValue = async (exchange, accounts) => {
   return (await Promise.all(
     accounts.map(async (account) => {
-      const price = await getPriceAgainstEur(account.currency)
+      const price = await getPriceAgainstEur(exchange, account.currency)
       account.valueInEur = account.balance * price
       return account
     })
   ))
 }
 
-const getPriceAgainstEur = async (currency) => {
+const getPriceAgainstEur = async (exchange, currency) => {
   if (currency == 'GBP') { return await 1.14 }
   if (currency == 'EUR') { return await 1 }
   return await exchange.latestPriceOf(`${currency}-EUR`)
@@ -98,13 +97,3 @@ const dp = (x, dp) => Number.parseFloat(x).toFixed(dp)
 const dp2 = (x) => dp(x, 4)
 const dp4 = (x) => dp(x, 4)
 const td = (str) => `<td>${str}</td>`
-
-exports.cancel = async (req, res, next) => {
-  await exchange.cancelOrder(req.params.id)
-  res.redirect(`/status`)
-}
-
-exports.limitOrder = async (req, res, next) => {
-  await exchange.order(req.params.side, req.body.amountOfBase, req.body.price, req.body.product)
-  res.redirect(`/status`)
-}

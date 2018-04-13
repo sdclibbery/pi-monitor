@@ -12,10 +12,9 @@ x Dont cache any pages
 x Bot log pages show latest entries on opening
 x Can switch which log levels are hidden on log page
 * Status page
- * Rename page to trade; split up and tidy
+ x Rename page to trade; split up and tidy
  * Use js instead of form submission for cancel/make order
  * Have 'are you sure' alert on cancelling orders
- * Why do you have to stop+refresh after submitting an order?
  * Error reporting for failed orders
  * ? Leave price blank when ordering to pick next closest price automatically
 !? Setup a shutdown button: https://github.com/dhunink/RaspberryPiSafeShutdown/blob/master/safeShudown.py
