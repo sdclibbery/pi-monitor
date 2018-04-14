@@ -17,14 +17,18 @@ app.use(basicAuth({
     challenge: true,
     realm: '7ygTF9DFgTh',
 }))
-
 app.use((req, res, next) => {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
   res.header('Expires', '-1');
   res.header('Pragma', 'no-cache');
   next();
 });
+app.use((req, res, next) => {
+  console.log(new Date(), req.url, req.method)
+  next();
+});
 app.use(express.urlencoded({extended:false}));
+
 app.get('/', require('./page-home').render)
 app.get('/system', require('./page-system-monitor').render)
 app.get('/trade', require('./page-trade').render)

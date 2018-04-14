@@ -3,10 +3,7 @@ const os =  require('os')
 const GdaxExchange = require('../tradr/gdax-exchange');
 
 exports.render = async (req, res, next) => {
-  const exchange = GdaxExchange.createExchange({}, {
-    debug: () => {},
-    error: console.log,
-  })
+  const exchange = GdaxExchange.createExchange({}, { debug: () => {}, error: console.log, })
   const data = await fetchData(exchange)
   res.send(frame(`
     <h1>${os.hostname()} GDAX status</h1>
@@ -56,11 +53,23 @@ const formatOrders = (orders) => {
       return `<tr>
                 <td>${stopReport}${o.type} ${o.side} ${dp4(o.amount)} ${baseCurrency} at ${dp2(o.price)} ${quoteCurrency}</td>
                 <td>created at ${o.created}</td>
-                <td><form action="/trade/cancel/${o.id}" method="post"><input type="submit" value="&#x1f5d1;"></td>
+                <td>
+                  <form id="form-cancel-${o.id}" action="/trade/cancel/${o.id}" method="post"></form>
+                  <button onclick="cancelOrder('${o.id}')">&#x1f5d1;</button>
+                </td>
               </tr>`
     })
     .join('\n')
-    return '<table>'+rows+'</table>'
+    return `<table>
+        ${rows}
+      </table>
+      <script>
+        cancelOrder = (id) => {
+          if (confirm('Really cancel order '+id+'?')) {
+            document.getElementById('form-cancel-'+id).submit()
+          }
+        }
+      </script>`
 }
 
 const fetchData = async (exchange) => {
