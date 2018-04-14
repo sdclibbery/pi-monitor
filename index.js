@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 
 const port = 8000
 const tunnelName =  os.hostname().toLowerCase().replace(/[^a-z0-9]/g, '')
-const localtunnelSubdomain = `sdclibbery${tunnelName}`
+const localtunnelSubdomain = `sdc-${tunnelName}`
 console.log(localtunnelSubdomain)
 const app = express()
 

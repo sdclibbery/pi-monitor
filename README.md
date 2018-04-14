@@ -13,10 +13,11 @@ x Bot log pages show latest entries on opening
 x Can switch which log levels are hidden on log page
 * Status page
  x Rename page to trade; split up and tidy
- * Have 'are you sure' alert on cancelling orders
- * Error reporting for failed orders
- * Use js instead of form submission for trade actions; rest endpoints return json including errors
-  :-( will need to change from basic auth to support REST :-/
+ - Use js instead of form submission for trade actions; rest endpoints return json including errors
+  :-( would need to change from basic auth to support REST :-/
+ x Have 'are you sure' alert on cancelling orders
+ * ?Why doesn't the response from creating an order work properly?
+ * Error reporting for failed GDAX requests
  * ? Leave price blank when ordering to pick next closest price automatically
 ??? Local tunnel subdomains not working??
 !? Setup a shutdown button: https://github.com/dhunink/RaspberryPiSafeShutdown/blob/master/safeShudown.py
