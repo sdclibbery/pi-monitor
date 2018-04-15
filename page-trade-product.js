@@ -11,6 +11,7 @@ exports.render = async (req, res, next) => {
     <h3>Account</h3>
     <iframe src="/account/${product}" style="height: 80px;"></iframe>
     <h3>Orders</h3>
+    <iframe src="/orders/${product}"></iframe>
     <h3>Trade</h3>
     <h3>Depth</h3>
   `))

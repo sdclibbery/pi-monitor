@@ -24,6 +24,7 @@ x Trade page
  x Route for page with product
  x List account info into iframe
  * List orders into an iframe
+  ! Formatting
  * Show live price and candles on a log plot
  * Trading options
   * Buy/sell with Exit for when price is rising/falling
