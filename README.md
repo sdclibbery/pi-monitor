@@ -11,6 +11,7 @@ x Format log blocks based on level
 x Dont cache any pages
 x Bot log pages show latest entries on opening
 x Can switch which log levels are hidden on log page
+x Local tunnel subdomains not working? Turned out they had to be shorter suddenly
 x Trade page
  x Rename page to trade; split up and tidy
  - Use js instead of form submission for trade actions; rest endpoints return json including errors
@@ -19,11 +20,20 @@ x Trade page
  x ?Why doesn't the response from creating an order work properly?
   x Because exhange.order is waiting for the fill
  x Error reporting for failed GDAX requests - pass msg back via redirect??
-??? Local tunnel subdomains not working??
-!? Setup a shutdown button: https://github.com/dhunink/RaspberryPiSafeShutdown/blob/master/safeShudown.py
-* Page to show live candles (getProductHistoricRates - call from client)
+* Trading pages
+ x Route for page with product
+ * List orders into an iframe
+ * List account info into iframe
+ * Show live candles on a log plot
+ * Trading options
+  * Buy/sell with Exit for when price is rising/falling
+  * Buy sell above/below for when price is fluctuating
+ * EMAs
+ * Show live depth chart
 * ? Need something (restartable) in monitor that can track candles and trigger bots automatically...
 * Show TA indicators: RSI, NVT
+!? Setup a shutdown button: https://github.com/dhunink/RaspberryPiSafeShutdown/blob/master/safeShudown.py
+ ? Or just a button on the webpage to shutdown...
 * Can clear logs
 * Bot log pages live update
 * Can set arguments when starting a bot

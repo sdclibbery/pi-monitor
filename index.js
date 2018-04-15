@@ -32,6 +32,7 @@ app.use(express.urlencoded({extended:false}));
 app.get('/', require('./page-home').render)
 app.get('/system', require('./page-system-monitor').render)
 app.get('/trade', require('./page-trade').render)
+app.get('/trade/:product', require('./page-trade-product').render)
 app.post('/trade/cancel/:id', require('./rest-trade').cancel)
 app.post('/trade/limit/:side', require('./rest-trade').limitOrder)
 app.get('/bot', require('./page-bot').render)

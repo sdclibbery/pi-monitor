@@ -6,6 +6,8 @@ exports.render = (req, res) => {
     <h1>${os.hostname()} pi monitor </h1>
     <p><a href="system">System Monitor</a></p>
     <p><a href="trade">GDAX Trade</a></p>
+    <p><a href="trade/BTC-EUR">Trade BTC-EUR</a></p>
+    <p><a href="trade/ETH-BTC">Trade ETH-BTC</a></p>
     <p><a href="bot">Bots</a></p>
   `))
 }
