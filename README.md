@@ -11,14 +11,14 @@ x Format log blocks based on level
 x Dont cache any pages
 x Bot log pages show latest entries on opening
 x Can switch which log levels are hidden on log page
-* Status page
+x Trade page
  x Rename page to trade; split up and tidy
  - Use js instead of form submission for trade actions; rest endpoints return json including errors
   :-( would need to change from basic auth to support REST :-/
  x Have 'are you sure' alert on cancelling orders
- * ?Why doesn't the response from creating an order work properly?
- * Error reporting for failed GDAX requests
- * ? Leave price blank when ordering to pick next closest price automatically
+ x ?Why doesn't the response from creating an order work properly?
+  x Because exhange.order is waiting for the fill
+ x Error reporting for failed GDAX requests - pass msg back via redirect??
 ??? Local tunnel subdomains not working??
 !? Setup a shutdown button: https://github.com/dhunink/RaspberryPiSafeShutdown/blob/master/safeShudown.py
 * Page to show live candles (getProductHistoricRates - call from client)
