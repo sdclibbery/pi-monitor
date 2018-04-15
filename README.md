@@ -22,9 +22,9 @@ x Trade page
  x Error reporting for failed GDAX requests - pass msg back via redirect??
 * Trading pages
  x Route for page with product
+ x List account info into iframe
  * List orders into an iframe
- * List account info into iframe
- * Show live candles on a log plot
+ * Show live price and candles on a log plot
  * Trading options
   * Buy/sell with Exit for when price is rising/falling
   * Buy sell above/below for when price is fluctuating
