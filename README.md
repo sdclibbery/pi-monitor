@@ -29,6 +29,7 @@ x Trade page
   * Buy sell above/below for when price is fluctuating
  * Show price and candles on a log plot
   x Basic drawing
+  * Make sure its not waiting for the iframes before rendering!
   * plot proper x axis using time (dont assume it from the index)
   * log plot
   * plot scale lines etc

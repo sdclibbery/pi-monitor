@@ -7,8 +7,8 @@ drawCandles = (canvas, candles) => {
     const w = canvas.width/300
     const x = canvas.width-i*w
     ctx.fillStyle = (c.close >= c.open) ? 'green' : 'red'
-    ctx.fillRect(x+w/2, toY(c.open), 1, Math.max(toY(c.close)-toY(c.open), 1))
-    ctx.fillRect(x, toY(c.low), w, toY(c.high)-toY(c.low), 1)
+    ctx.fillRect(x+w/2, toY(c.low), 1, Math.max(toY(c.high)-toY(c.low), 1))
+    ctx.fillRect(x, toY(c.open), w, toY(c.close)-toY(c.open), 1)
   })
   ctx.fillStyle = 'black'
   ctx.font = '12px sans'
