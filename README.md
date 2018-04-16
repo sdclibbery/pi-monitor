@@ -25,6 +25,7 @@ x Trade page
  x List account info into iframe
  * List orders into an iframe
   ! Formatting
+ * Tradr: order tracking in sqlite
  * Show live price and candles on a log plot
  * Trading options
   * Buy/sell with Exit for when price is rising/falling

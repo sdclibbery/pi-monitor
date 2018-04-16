@@ -11,12 +11,12 @@ exports.render = async (req, res, next) => {
     .filter(o => o.product == product)
     .map(o => {
       const stopReport = o.stop ? `stop ${o.stop} at ${dp2(o.stopPrice)} ${quoteCurrency}: ` : ''
-      return `${stopReport}${o.type} ${o.side} ${exchange.formatBase(o.amount)} at ${exchange.formatQuote(o.price)}  created at ${o.created}<br/>`
+      return `<tr><td>${stopReport}${o.type} <b>${o.side}</b> ${exchange.formatBase(o.amount)} at <b>${exchange.formatQuote(o.price)}</b></td><td>created at ${o.created}</td></tr>`
     })
     .join('\n')
 
   res.send(frame(`
-    ${formattedOrders}
+    <table>${formattedOrders}</table>
     <button onclick="document.location.reload()">&#x1f5d8;</button><br/>
   `))
 }
