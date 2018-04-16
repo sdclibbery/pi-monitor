@@ -28,6 +28,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.urlencoded({extended:false}));
+app.use(express.static('client'))
 
 app.get('/', require('./page-home').render)
 app.get('/system', require('./page-system-monitor').render)

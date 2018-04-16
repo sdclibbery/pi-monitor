@@ -23,13 +23,17 @@ x Trade page
 * Trading pages
  x Route for page with product
  x List account info into iframe
- * List orders into an iframe
-  ! Formatting
- * Tradr: order tracking in sqlite
- * Show live price and candles on a log plot
+ x List orders into an iframe
  * Trading options
   * Buy/sell with Exit for when price is rising/falling
   * Buy sell above/below for when price is fluctuating
+ * Show price and candles on a log plot
+  x Basic drawing
+  * plot proper x axis using time (dont assume it from the index)
+  * log plot
+  * plot scale lines etc
+ * Tradr: order tracking in sqlite
+ * Price and candles auto update
  * EMAs
  * Show live depth chart
 * ? Need something (restartable) in monitor that can track candles and trigger bots automatically...
