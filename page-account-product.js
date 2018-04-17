@@ -1,4 +1,4 @@
-const frame =  require('./frame').apply
+const frame =  require('./frame').minimal
 const GdaxExchange = require('../tradr/gdax-exchange');
 
 exports.render = async (req, res, next) => {
