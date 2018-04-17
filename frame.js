@@ -15,7 +15,6 @@ exports.apply = (content) => `
   </head>
   <body>
     <a href='/'>Home</a>
-    <a href='/system'>System</a>
     <a href='/trade'>Status</a>
     <a href='/trade/BTC-EUR'>BTC-EUR</a>
     <a href='/trade/ETH-BTC'>ETH-BTC</a>

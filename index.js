@@ -47,5 +47,9 @@ app.listen(port, () => {
   console.log('pi-monitor listening on port '+port)
   localtunnel(port, { subdomain: localtunnelSubdomain }, (err, tunnel) => {
     console.log('localtunnel: ', err || (tunnel && tunnel.url))
+    if (!(tunnel ? tunnel.url : '').includes(localtunnelSubdomain)) {
+      console.log('Bad localtunnel subdomain; quitting to try again')
+      process.exit()
+    }
   })
 })

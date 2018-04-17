@@ -24,10 +24,10 @@ x Trade page
  x Route for page with product
  x List account info into iframe
  x List orders into an iframe
+ * Tradr: order tracking in sqlite
  * Trading options
   * Buy/sell with Exit for when price is rising/falling
   * Buy sell above/below for when price is fluctuating
- * Tradr: order tracking in sqlite
  * Show price and candles on a log plot
   x Basic drawing
   x Make sure its not waiting for the iframes before rendering!
