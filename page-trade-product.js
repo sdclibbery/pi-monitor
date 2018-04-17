@@ -12,8 +12,8 @@ exports.render = async (req, res, next) => {
   res.send(frame(`
     <h1>Trade ${product}</h1>
     <h3>Price/Candles</h3>
+    <canvas id="candles" width="1800" height="600" style="width:900px; height:300px;"></canvas>
     <p><span id="price">${price}</span> ${quoteCurrency}</p>
-    <canvas id="candles" width="900" height="300" style="width:900px; height:300px;"></canvas>
     <h3>Account</h3>
     <iframe src="/account/${product}" style="width: 100%; height: 80px;"></iframe>
     <h3>Trade</h3>
@@ -23,9 +23,7 @@ exports.render = async (req, res, next) => {
     <script src="/draw-candles.js"></script>
     <script>
       var candles = ${JSON.stringify(candles)};
-      window.onload = () => {
-        drawCandles(document.getElementById('candles'), candles);
-      };
+      drawCandles(document.getElementById('candles'), candles);
     </script>
   `))
 }

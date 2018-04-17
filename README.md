@@ -29,8 +29,9 @@ x Trade page
   * Buy sell above/below for when price is fluctuating
  * Show price and candles on a log plot
   x Basic drawing
-  * Make sure its not waiting for the iframes before rendering!
-  * plot proper x axis using time (dont assume it from the index)
+  x Make sure its not waiting for the iframes before rendering!
+  * refactor and clean
+  * plot proper x axis using time (dont assume it from the index) - also think we're losing the most recent candle at the moment!!
   * log plot
   * plot scale lines etc
  * Tradr: order tracking in sqlite
