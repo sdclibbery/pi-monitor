@@ -14,19 +14,19 @@ exports.render = async (req, res, next) => {
     ${formatOrders(data.orders)}
     <h3>Trade</h3>
     <h4>Limit Sell</h4>
-      <form style="display:inline" action="/trade/limit/sell" method="post">
-        <input type="text" name="product" value="BTC-EUR">
-        <input type="text" name="amountOfBase" value="0.01">
-        <input type="text" name="price" value="${exchange.roundQuote(data.btcEurPrice + 0.01)}">
-        <input type="submit" value="Place order">
-      </form>
+    <form style="display:inline" action="/trade/limit/sell" method="post">
+      <input type="text" name="product" value="BTC-EUR">
+      <input type="text" name="amountOfBase" value="0.01">
+      <input type="text" name="price" value="${exchange.roundQuote(data.btcEurPrice + 0.01)}">
+      <input type="submit" value="Place order">
+    </form>
     <h4>Limit Buy</h4>
-      <form style="display:inline" action="/trade/limit/buy" method="post">
-        <input type="text" name="product" value="BTC-EUR">
-        <input type="text" name="amountOfBase" value="0.01">
-        <input type="text" name="price" value="${exchange.roundQuote(data.btcEurPrice - 0.01)}">
-        <input type="submit" value="Place order">
-      </form>
+    <form style="display:inline" action="/trade/limit/buy" method="post">
+      <input type="text" name="product" value="BTC-EUR">
+      <input type="text" name="amountOfBase" value="0.01">
+      <input type="text" name="price" value="${exchange.roundQuote(data.btcEurPrice - 0.01)}">
+      <input type="submit" value="Place order">
+    </form>
   `))
 }
 const formatAccounts = (accounts) => {

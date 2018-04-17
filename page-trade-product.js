@@ -11,14 +11,33 @@ exports.render = async (req, res, next) => {
 
   res.send(frame(`
     <h1>Trade ${product}</h1>
+
     <h3>Price/Candles</h3>
     <canvas id="candles" width="1800" height="600" style="width:900px; height:300px;"></canvas>
     <p><span id="price">${price}</span> ${quoteCurrency}</p>
+
     <h3>Account</h3>
     <iframe src="/account/${product}" style="width: 100%; height: 80px;"></iframe>
+
     <h3>Trade</h3>
+    <h4>Limit Sell</h4>
+    <form style="display:inline" action="/trade/limit/sell" method="post">
+      <input type="text" name="product" value="${product}">
+      <input type="text" name="amountOfBase" value="0.01">
+      <input type="text" name="price" value="${exchange.roundQuote(price + 0.01)}">
+      <input type="submit" value="Place order">
+    </form>
+    <h4>Limit Buy</h4>
+    <form style="display:inline" action="/trade/limit/buy" method="post">
+      <input type="text" name="product" value="${product}">
+      <input type="text" name="amountOfBase" value="0.01">
+      <input type="text" name="price" value="${exchange.roundQuote(price - 0.01)}">
+      <input type="submit" value="Place order">
+    </form>
+
     <h3>Orders</h3>
     <iframe src="/orders/${product}" style="width: 100%; height: 160px;"></iframe>
+
     <h3>Depth</h3>
     <script src="/draw-candles.js"></script>
     <script>

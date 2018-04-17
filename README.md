@@ -27,6 +27,7 @@ x Trade page
  * Trading options
   * Buy/sell with Exit for when price is rising/falling
   * Buy sell above/below for when price is fluctuating
+ * Tradr: order tracking in sqlite
  * Show price and candles on a log plot
   x Basic drawing
   x Make sure its not waiting for the iframes before rendering!
@@ -34,7 +35,6 @@ x Trade page
   * plot proper x axis using time (dont assume it from the index) - also think we're losing the most recent candle at the moment!!
   * log plot
   * plot scale lines etc
- * Tradr: order tracking in sqlite
  * Price and candles auto update
  * EMAs
  * Show live depth chart
