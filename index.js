@@ -42,13 +42,15 @@ app.get('/bot', require('./page-bot').render)
 app.post('/bot/start/:bot', require('./page-bot').start)
 app.post('/bot/stop/:bot', require('./page-bot').stop)
 app.get('/bot/log/:logFile', require('./page-bot-log').render)
+//TEMP:
+app.get('/orders-tracked', async (req, res) => res.send(await require('../tradr/order-tracker').getOrders()))
 
 app.listen(port, () => {
   console.log('pi-monitor listening on port '+port)
   localtunnel(port, { subdomain: localtunnelSubdomain }, (err, tunnel) => {
     console.log('localtunnel: ', err || (tunnel && tunnel.url))
     if (!(tunnel ? tunnel.url : '').includes(localtunnelSubdomain)) {
-      console.log('Bad localtunnel subdomain; quitting to try again')
+      console.log('Bad localtunnel subdomain, quitting')
       process.exit()
     }
   })

@@ -39,6 +39,7 @@ x Trade page
  * EMAs
  * Show live depth chart
 * ? Need something (restartable) in monitor that can track candles and trigger bots automatically...
+* localtunnel: Always start from correct, but retry with additions if it fails, this way any adjustment should be temporary
 * Show TA indicators: RSI, NVT
 !? Setup a shutdown button: https://github.com/dhunink/RaspberryPiSafeShutdown/blob/master/safeShudown.py
  ? Or just a button on the webpage to shutdown...
