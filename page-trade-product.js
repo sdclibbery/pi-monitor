@@ -21,14 +21,14 @@ exports.render = async (req, res, next) => {
 
     <h3>Trade</h3>
     <h4>Limit Sell</h4>
-    <form style="display:inline" action="/trade/limit/sell" method="post">
+    <form style="display:inline" action="/trade/limit/sell?next=%2Ftrade%2F${product}" method="post">
       <input type="text" name="product" value="${product}">
       <input type="text" name="amountOfBase" value="0.01">
       <input type="text" name="price" value="${exchange.roundQuote(price + 0.01)}">
       <input type="submit" value="Place order">
     </form>
     <h4>Limit Buy</h4>
-    <form style="display:inline" action="/trade/limit/buy" method="post">
+    <form style="display:inline" action="/trade/limit/buy?next=%2Ftrade%2F${product}" method="post">
       <input type="text" name="product" value="${product}">
       <input type="text" name="amountOfBase" value="0.01">
       <input type="text" name="price" value="${exchange.roundQuote(price - 0.01)}">
