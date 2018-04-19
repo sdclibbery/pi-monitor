@@ -20,16 +20,24 @@ exports.render = async (req, res, next) => {
     <iframe src="/account/${product}" style="width: 100%; height: 80px;"></iframe>
 
     <h3>Trade</h3>
+    <h4>Price fluctuating without major trend</h4>
+    <form style="display:inline" action="/trade/limit/buysell?next=%2Ftrade%2F${product}&reason=buy+and+sell+above+and+below+current+price" method="post">
+      <input type="hidden" name="product" value="${product}">
+      <input type="number" name="amountOfBase" value="0.01" step="${exchange.baseStep}">
+      <input type="number" name="buyPrice" value="${exchange.roundQuote(price * 0.995)}" step="${exchange.quoteStep}">
+      <input type="number" name="sellPrice" value="${exchange.roundQuote(price * 1.005)}" step="${exchange.quoteStep}">
+      <input type="submit" value="Place orders">
+    </form>
     <h4>Limit Sell</h4>
-    <form style="display:inline" action="/trade/limit/sell?next=%2Ftrade%2F${product}" method="post">
-      <input type="text" name="product" value="${product}">
+    <form style="display:inline" action="/trade/limit/sell?next=%2Ftrade%2F${product}&reason=unknown" method="post">
+      <input type="hidden" name="product" value="${product}">
       <input type="text" name="amountOfBase" value="0.01">
       <input type="text" name="price" value="${exchange.roundQuote(price + 0.01)}">
       <input type="submit" value="Place order">
     </form>
     <h4>Limit Buy</h4>
-    <form style="display:inline" action="/trade/limit/buy?next=%2Ftrade%2F${product}" method="post">
-      <input type="text" name="product" value="${product}">
+    <form style="display:inline" action="/trade/limit/buy?next=%2Ftrade%2F${product}&reason=unknown" method="post">
+      <input type="hidden" name="product" value="${product}">
       <input type="text" name="amountOfBase" value="0.01">
       <input type="text" name="price" value="${exchange.roundQuote(price - 0.01)}">
       <input type="submit" value="Place order">

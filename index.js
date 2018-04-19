@@ -37,6 +37,7 @@ app.get('/trade/:product', require('./page-trade-product').render)
 app.get('/account/:product', require('./page-account-product').render)
 app.get('/orders/:product', require('./page-orders-product').render)
 app.post('/trade/cancel/:id', require('./rest-trade').cancel)
+app.post('/trade/limit/buysell', require('./rest-trade').buySellLimitOrder)
 app.post('/trade/limit/:side', require('./rest-trade').limitOrder)
 app.get('/bot', require('./page-bot').render)
 app.post('/bot/start/:bot', require('./page-bot').start)
@@ -50,8 +51,18 @@ app.listen(port, () => {
   localtunnel(port, { subdomain: localtunnelSubdomain }, (err, tunnel) => {
     console.log('localtunnel: ', err || (tunnel && tunnel.url))
     if (!(tunnel ? tunnel.url : '').includes(localtunnelSubdomain)) {
-      console.log('Bad localtunnel subdomain, quitting')
-      process.exit()
+      localtunnel(port, { subdomain: localtunnelSubdomain+'1' }, (err, tunnel) => {
+        console.log('localtunnel: ', err || (tunnel && tunnel.url))
+        if (!(tunnel ? tunnel.url : '').includes(localtunnelSubdomain)) {
+          localtunnel(port, { subdomain: localtunnelSubdomain+'2' }, (err, tunnel) => {
+            console.log('localtunnel: ', err || (tunnel && tunnel.url))
+            if (!(tunnel ? tunnel.url : '').includes(localtunnelSubdomain)) {
+              console.log('Bad localtunnel subdomain, quitting')
+              process.exit()
+            }
+          })
+        }
+      })
     }
   })
 })

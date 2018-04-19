@@ -24,11 +24,12 @@ x Trade page
  x Route for page with product
  x List account info into iframe
  x List orders into an iframe
+ * Trading options
+  * Buy sell above/below for when price is fluctuating
+  * Buy/sell limit now with Exit for when price is rising/falling
  * Switch candle granularities
  * Tradr: order tracking in sqlite
- * Trading options
-  * Buy/sell with Exit for when price is rising/falling
-  * Buy sell above/below for when price is fluctuating
+ * Better default values on ETH page
  * Show price and candles on a log plot
   x Basic drawing
   x Make sure its not waiting for the iframes before rendering!
