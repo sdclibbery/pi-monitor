@@ -13,7 +13,7 @@ exports.render = async (req, res, next) => {
     <h1>Trade ${product}</h1>
 
     <h3>Price/Candles</h3>
-    <canvas id="candles" width="1800" height="600" style="width:900px; height:300px;"></canvas>
+    <canvas id="candles" width="1800" height="600" style="width:100%;"></canvas>
     <p><span id="price">${price}</span> ${quoteCurrency}</p>
 
     <h3>Account</h3>

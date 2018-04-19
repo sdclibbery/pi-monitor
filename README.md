@@ -24,6 +24,7 @@ x Trade page
  x Route for page with product
  x List account info into iframe
  x List orders into an iframe
+ * Switch candle granularities
  * Tradr: order tracking in sqlite
  * Trading options
   * Buy/sell with Exit for when price is rising/falling
