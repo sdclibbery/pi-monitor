@@ -23,7 +23,7 @@ exports.render = async (req, res, next) => {
     <h4>Price fluctuating without major trend</h4>
     <form style="display:inline" action="/trade/limit/buysell?next=%2Ftrade%2F${product}&reason=buy+and+sell+above+and+below+current+price" method="post">
       <input type="hidden" name="product" value="${product}">
-      <input type="number" name="amountOfBase" value="0.01" step="${exchange.baseStep}">
+      <input type="number" name="amountOfBase" value="${exchange.baseStep*10}" step="${exchange.baseStep}">
       <input type="number" name="buyPrice" value="${exchange.roundQuote(price * 0.995)}" step="${exchange.quoteStep}">
       <input type="number" name="sellPrice" value="${exchange.roundQuote(price * 1.005)}" step="${exchange.quoteStep}">
       <input type="submit" value="Place orders">

@@ -24,12 +24,15 @@ x Trade page
  x Route for page with product
  x List account info into iframe
  x List orders into an iframe
- * Trading options
-  * Buy sell above/below for when price is fluctuating
-  * Buy/sell limit now with Exit for when price is rising/falling
+ x Better default values on ETH page
  * Switch candle granularities
+  * Fetch and process candles client-side
+  * Buttons to switch granularities
+ * Trading options
+  x Buy sell above/below for when price is fluctuating
+  * Buy then sell button for price rise. Runs a Bot. Tries to buy at up to the specified sell price, then places sell order.
+     Has good tracking reason etc. Launch from button on trade product page
  * Tradr: order tracking in sqlite
- * Better default values on ETH page
  * Show price and candles on a log plot
   x Basic drawing
   x Make sure its not waiting for the iframes before rendering!
