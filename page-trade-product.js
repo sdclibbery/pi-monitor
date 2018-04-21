@@ -28,19 +28,19 @@ exports.render = async (req, res, next) => {
       <input type="number" name="sellPrice" value="${exchange.roundQuote(price * 1.005)}" step="${exchange.quoteStep}">
       <input type="submit" value="Place orders">
     </form>
-    <h4>Limit Sell</h4>
-    <form style="display:inline" action="/trade/limit/sell?next=%2Ftrade%2F${product}&reason=unknown" method="post">
+    <h4>Price is going to rise</h4>
+    <form style="display:inline" action="/trade/buyThenSell?next=%2Ftrade%2F${product}" method="post">
       <input type="hidden" name="product" value="${product}">
       <input type="text" name="amountOfBase" value="0.01">
-      <input type="text" name="price" value="${exchange.roundQuote(price + 0.01)}">
-      <input type="submit" value="Place order">
+      <input type="number" name="targetPrice" value="${exchange.roundQuote(price * 1.005)}" step="${exchange.quoteStep}">
+      <input type="submit" value="Buy then Sell">
     </form>
-    <h4>Limit Buy</h4>
-    <form style="display:inline" action="/trade/limit/buy?next=%2Ftrade%2F${product}&reason=unknown" method="post">
+    <h4>Price is going to fall</h4>
+    <form style="display:inline" action="/trade/sellThenBuy?next=%2Ftrade%2F${product}" method="post">
       <input type="hidden" name="product" value="${product}">
       <input type="text" name="amountOfBase" value="0.01">
-      <input type="text" name="price" value="${exchange.roundQuote(price - 0.01)}">
-      <input type="submit" value="Place order">
+      <input type="number" name="targetPrice" value="${exchange.roundQuote(price * 0.995)}" step="${exchange.quoteStep}">
+      <input type="submit" value="Sell then Buy">
     </form>
 
     <h3>Orders</h3>

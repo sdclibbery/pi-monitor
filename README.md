@@ -25,14 +25,15 @@ x Trade page
  x List account info into iframe
  x List orders into an iframe
  x Better default values on ETH page
- * Switch candle granularities
-  * Fetch and process candles client-side
-  * Buttons to switch granularities
  * Trading options
   x Buy sell above/below for when price is fluctuating
   * Buy then sell button for price rise. Runs a Bot. Tries to buy at up to the specified sell price, then places sell order.
      Has good tracking reason etc. Launch from button on trade product page
+ * Switch candle granularities
+  * Fetch and process candles client-side
+  * Buttons to switch granularities
  * Tradr: order tracking in sqlite
+ * order page will need pagination/sorting/filtering
  * Show price and candles on a log plot
   x Basic drawing
   x Make sure its not waiting for the iframes before rendering!
@@ -43,6 +44,8 @@ x Trade page
  * Price and candles auto update
  * EMAs
  * Show live depth chart
+* Mechanism for rationalising old orders
+ * Eg find old orders that can cancel with each other given their 'createdAt' prices?
 * ? Need something (restartable) in monitor that can track candles and trigger bots automatically...
 * localtunnel: Always start from correct, but retry with additions if it fails, this way any adjustment should be temporary
 * Show TA indicators: RSI, NVT

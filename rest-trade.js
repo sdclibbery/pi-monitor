@@ -1,3 +1,5 @@
+const { spawn } = require('child_process');
+const process = require('process')
 const GdaxExchange = require('../tradr/gdax-exchange');
 
 exports.cancel = async (req, res, next) => {
@@ -30,4 +32,40 @@ exports.buySellLimitOrder = async (req, res, next) => {
   } catch (e) {
     res.status(500).send(`GDAX error: ${e}`)
   }
+}
+
+exports.buyThenSell = async (req, res, next) => {
+  const args = [
+    'bot-buy-then-sell.js',
+    '-p', req.body.product,
+    '-a', req.body.amountOfBase,
+    '-t', req.body.targetPrice,
+  ]
+  const subprocess = spawn(process.argv[0], args, {
+    cwd: '../tradr',
+    detached: true,
+    stdio: 'ignore',
+  })
+  subprocess.unref()
+  res.redirect(req.query.next || `/trade`)
+}
+
+exports.sellThenBuy = async (req, res, next) => {
+  const args = [
+    'bot-sell-then-buy.js',
+    '-p', req.body.product,
+    '-a', req.body.amountOfBase,
+    '-t', req.body.targetPrice,
+  ]
+  const subprocess = spawn(process.argv[0], args, {
+    cwd: '../tradr',
+    detached: true,
+    stdio: 'ignore',
+  })
+  subprocess.unref()
+  res.redirect(req.query.next || `/trade`)
+}
+
+const launchBot = () => {
+
 }
