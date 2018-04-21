@@ -35,6 +35,7 @@ app.get('/system', require('./page-system-monitor').render)
 app.get('/trade', require('./page-trade').render)
 app.get('/trade/:product', require('./page-trade-product').render)
 app.get('/account/:product', require('./page-account-product').render)
+app.get('/orders', require('./page-orders').render)
 app.get('/orders/:product', require('./page-orders-product').render)
 app.post('/trade/cancel/:id', require('./rest-trade').cancel)
 app.post('/trade/limit/buysell', require('./rest-trade').buySellLimitOrder)
@@ -43,8 +44,6 @@ app.get('/bot', require('./page-bot').render)
 app.post('/bot/start/:bot', require('./page-bot').start)
 app.post('/bot/stop/:bot', require('./page-bot').stop)
 app.get('/bot/log/:logFile', require('./page-bot-log').render)
-//TEMP:
-app.get('/orders-tracked', async (req, res) => res.send(await require('../tradr/order-tracker').getOrders()))
 
 app.listen(port, () => {
   console.log('pi-monitor listening on port '+port)
