@@ -46,10 +46,14 @@ app.get('/bot', require('./page-bot').render)
 app.post('/bot/start/:bot', require('./page-bot').start)
 app.post('/bot/stop/:bot', require('./page-bot').stop)
 app.get('/bot/log/:logFile', require('./page-bot-log').render)
+app.post('/shutdown/app', (req, res) => process.exit() )
+app.post('/shutdown/pi', (req, res) => { require('child_process').exec("/sbin/shutdown -h now", () => { res.send("Pi shutdown: done") }) })
 
-app.listen(port, () => {
+let localtunnelInstance
+const expressServer = app.listen(port, () => {
   console.log('pi-monitor listening on port '+port)
   localtunnel(port, { subdomain: localtunnelSubdomain }, (err, tunnel) => {
+    localtunnelInstance = tunnel
     console.log('localtunnel: ', err || (tunnel && tunnel.url))
     if (!(tunnel ? tunnel.url : '').includes(localtunnelSubdomain)) {
       localtunnel(port, { subdomain: localtunnelSubdomain+'1' }, (err, tunnel) => {
