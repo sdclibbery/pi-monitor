@@ -10,7 +10,7 @@ exports.render = async (req, res, next) => {
   const formattedOrders = orders
     .filter(o => o.product == product)
     .map(o => {
-      const stopReport = o.stop ? `stop ${o.stop} at ${dp2(o.stopPrice)} ${quoteCurrency}: ` : ''
+      const stopReport = o.stop ? `stop ${o.stop} at ${exchange.formatQuote(o.stopPrice)} ${quoteCurrency}: ` : ''
       return `<tr><td>${stopReport}${o.type} <b>${o.side}</b> ${exchange.formatBase(o.amount)} at <b>${exchange.formatQuote(o.price)}</b></td><td>created at ${o.created}</td></tr>`
     })
     .join('\n')
