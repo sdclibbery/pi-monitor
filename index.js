@@ -32,7 +32,7 @@ app.use(express.static('client'))
 
 app.get('/', require('./page-home').render)
 app.get('/system', require('./page-system-monitor').render)
-app.get('/trade', require('./page-trade').render)
+app.get('/status', require('./page-status').render)
 app.get('/trade/:product', require('./page-trade-product').render)
 app.get('/account/:product', require('./page-account-product').render)
 app.get('/orders', require('./page-orders').render)

@@ -5,7 +5,7 @@ exports.render = (req, res) => {
   res.send(frame(`
     <h1>${os.hostname()} pi monitor </h1>
     <p><a href="system">System Monitor</a></p>
-    <p><a href="trade">GDAX Trade</a></p>
+    <p><a href="status">GDAX status</a></p>
     <p><a href="orders">Orders</a></p>
     <p><a href="bot">Bots</a></p>
   `))
