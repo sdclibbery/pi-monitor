@@ -12,7 +12,7 @@ drawCandles = (canvas, candles) => {
   candles.map((c, i) => {
     const x = toX(i)-barW
 
-    ctx.fillStyle = '#909090'
+    ctx.fillStyle = '#b0b0b0'
     const volumeBarHeight = c.volume*5
     ctx.fillRect(x, canvas.height - volumeBarHeight, barW-1, volumeBarHeight)
 

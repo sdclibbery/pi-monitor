@@ -27,9 +27,10 @@ x Trade page
  x Better default values on ETH page
  * Trading options
   x Buy sell above/below for when price is fluctuating
-  * Buy then sell button for price rise. Runs a Bot. Tries to buy at up to the specified sell price, then places sell order.
+  x Buy then sell button for price rise. Runs a Bot. Tries to buy at up to the specified sell price, then places sell order.
      Has good tracking reason etc. Launch from button on trade product page
- * Switch candle granularities
+ * Candle granularities
+  * Zoom in and allow swiping left/right if possible
   * Fetch and process candles client-side
   * Buttons to switch granularities
  * Tradr: order tracking in sqlite
