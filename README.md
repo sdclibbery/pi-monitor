@@ -1,5 +1,6 @@
 
 # ToDo
+* Run tradr server and restart if necessary, also logging
 * Proxy tradin pages to tradr server
 * Trading pages
  x Route for page with product
