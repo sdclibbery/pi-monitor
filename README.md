@@ -1,36 +1,17 @@
+
 # ToDo
-x install https://github.com/localtunnel/localtunnel and run from inside THIS app...
- x Use machine hostname for subdomain (with 'sdclibbery' prefix)
-x Simple page that gets the pi CPU load, memory stats, heap status, disk space etc
-x Authentication
-x Extract pages out to their own files
-x See logs of bots
-x Can start a bot
-x Can stop a bot
-x Format log blocks based on level
-x Dont cache any pages
-x Bot log pages show latest entries on opening
-x Can switch which log levels are hidden on log page
-x Local tunnel subdomains not working? Turned out they had to be shorter suddenly
-x Trade page
- x Rename page to trade; split up and tidy
- - Use js instead of form submission for trade actions; rest endpoints return json including errors
-  :-( would need to change from basic auth to support REST :-/
- x Have 'are you sure' alert on cancelling orders
- x ?Why doesn't the response from creating an order work properly?
-  x Because exhange.order is waiting for the fill
- x Error reporting for failed GDAX requests - pass msg back via redirect??
+* Proxy tradin pages to tradr server
 * Trading pages
  x Route for page with product
  x List account info into iframe
  x List orders into an iframe
  x Better default values on ETH page
- * Trading options
+ x Trading options
   x Buy sell above/below for when price is fluctuating
   x Buy then sell button for price rise. Runs a Bot. Tries to buy at up to the specified sell price, then places sell order.
      Has good tracking reason etc. Launch from button on trade product page
  * Candle granularities
-  * Zoom in and allow swiping left/right if possible
+  x Zoom in and allow swiping left/right if possible
   * Fetch and process candles client-side
   * Buttons to switch granularities
  * Tradr: order tracking in sqlite
