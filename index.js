@@ -1,15 +1,11 @@
 const express = require('express')
-const os =  require('os')
-const localtunnel = require('localtunnel')
 const basicAuth = require('express-basic-auth')
 const bcrypt = require('bcrypt')
 const foreverTradr = require('./forever-tradr')
+const expose = require('./expose-server').expose
 
-const port = 8000
-const tunnelName =  os.hostname().toLowerCase().replace(/[^a-z0-9]/g, '')
-const localtunnelSubdomain = `sdclibbery-${tunnelName}-monitor`
-console.log(localtunnelSubdomain)
-let localtunnelInstance
+const monitorPort = 8000
+const tradrPort = 8001
 
 const app = express()
 app.use(basicAuth({
@@ -43,10 +39,9 @@ app.post('/shutdown/pi', (req, res) => {
   })
 })
 
-const expressServer = app.listen(port, () => {
-  console.log('pi-monitor listening on port '+port)
-  localtunnel(port, { subdomain: localtunnelSubdomain }, (err, tunnel) => {
-    localtunnelInstance = tunnel
-    console.log('localtunnel: ', err || (tunnel && tunnel.url))
-  })
+app.listen(monitorPort, () => {
+  console.log('pi-monitor listening on port '+monitorPort)
 })
+
+expose('monitor', monitorPort)
+expose('tradr', tradrPort)
