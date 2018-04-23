@@ -3,13 +3,15 @@ const os =  require('os')
 const localtunnel = require('localtunnel')
 const basicAuth = require('express-basic-auth')
 const bcrypt = require('bcrypt')
+const forever = require('forever-monitor').Monitor
 
 const port = 8000
 const tunnelName =  os.hostname().toLowerCase().replace(/[^a-z0-9]/g, '')
-const localtunnelSubdomain = `sdclibbery-${tunnelName}`
+const localtunnelSubdomain = `sdclibbery-${tunnelName}-monitor`
 console.log(localtunnelSubdomain)
-const app = express()
+let localtunnelInstance
 
+const app = express()
 app.use(basicAuth({
     authorizer: (username, password) => {
       return username == 'steve' && bcrypt.compareSync(password, '$2a$10$SqywWBhDP76FSYQN/cqcw.aGdYKByNKPbI.XRsdbu.crXb7kuXhJi')
@@ -27,33 +29,44 @@ app.use((req, res, next) => {
   console.log(new Date(), req.url, req.method)
   next();
 });
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:false}))
 app.use(express.static('client'))
 
 app.get('/', require('./page-home').render)
 app.get('/system', require('./page-system-monitor').render)
-app.post('/shutdown/app', (req, res) => process.exit() )
-app.post('/shutdown/pi', (req, res) => { require('child_process').exec("/sbin/shutdown -h now", () => { res.send("Pi shutdown: done") }) })
+app.post('/shutdown/app', (req, res) => {
+  process.exit()
+})
+app.post('/shutdown/pi', (req, res) => {
+  require('child_process').exec("/sbin/shutdown -h now", () => {
+    res.send("Pi shutdown: done")
+  })
+})
 
-let localtunnelInstance
 const expressServer = app.listen(port, () => {
   console.log('pi-monitor listening on port '+port)
   localtunnel(port, { subdomain: localtunnelSubdomain }, (err, tunnel) => {
     localtunnelInstance = tunnel
     console.log('localtunnel: ', err || (tunnel && tunnel.url))
-    if (!(tunnel ? tunnel.url : '').includes(localtunnelSubdomain)) {
-      localtunnel(port, { subdomain: localtunnelSubdomain+'1' }, (err, tunnel) => {
-        console.log('localtunnel: ', err || (tunnel && tunnel.url))
-        if (!(tunnel ? tunnel.url : '').includes(localtunnelSubdomain)) {
-          localtunnel(port, { subdomain: localtunnelSubdomain+'2' }, (err, tunnel) => {
-            console.log('localtunnel: ', err || (tunnel && tunnel.url))
-            if (!(tunnel ? tunnel.url : '').includes(localtunnelSubdomain)) {
-              console.log('Bad localtunnel subdomain, quitting')
-              process.exit()
-            }
-          })
-        }
-      })
-    }
   })
 })
+
+let foreverTradr = new forever('../tradr/index.js', {
+  silent: true,
+  cwd: '../tradr',
+  outFile: '../tradr/tradr.log',
+  errFile: '../tradr/tradr.log',
+})
+foreverTradr.on('watch:start', () => {
+    console.log('Forever starting tradr');
+})
+foreverTradr.on('watch:restart', (info) => {
+    console.error('Forever restarting tradr because ' + info.file + ' changed');
+})
+foreverTradr.on('restart', () => {
+    console.error('Forever restarting tradr for ' + foreverTradr.times + ' time');
+})
+foreverTradr.on('exit:code', (code) => {
+    console.error('Forever detected tradr exited with code ' + code);
+})
+foreverTradr.start()
