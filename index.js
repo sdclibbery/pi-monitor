@@ -3,7 +3,7 @@ const os =  require('os')
 const localtunnel = require('localtunnel')
 const basicAuth = require('express-basic-auth')
 const bcrypt = require('bcrypt')
-const forever = require('forever-monitor').Monitor
+const foreverTradr = require('./forever-tradr')
 
 const port = 8000
 const tunnelName =  os.hostname().toLowerCase().replace(/[^a-z0-9]/g, '')
@@ -50,23 +50,3 @@ const expressServer = app.listen(port, () => {
     console.log('localtunnel: ', err || (tunnel && tunnel.url))
   })
 })
-
-let foreverTradr = new forever('../tradr/index.js', {
-  silent: true,
-  cwd: '../tradr',
-  outFile: '../tradr/tradr.log',
-  errFile: '../tradr/tradr.log',
-})
-foreverTradr.on('watch:start', () => {
-    console.log('Forever starting tradr');
-})
-foreverTradr.on('watch:restart', (info) => {
-    console.error('Forever restarting tradr because ' + info.file + ' changed');
-})
-foreverTradr.on('restart', () => {
-    console.error('Forever restarting tradr for ' + foreverTradr.times + ' time');
-})
-foreverTradr.on('exit:code', (code) => {
-    console.error('Forever detected tradr exited with code ' + code);
-})
-foreverTradr.start()
