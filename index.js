@@ -30,13 +30,18 @@ app.use(express.static('client'))
 
 app.get('/', require('./page-home').render)
 app.get('/system', require('./page-system-monitor').render)
-app.post('/shutdown/app', (req, res) => {
+app.post('/shutdown/monitor', (req, res) => {
   process.exit()
+  res.send("Monitor shutdown: done")
 })
 app.post('/shutdown/pi', (req, res) => {
   require('child_process').exec("/sbin/shutdown -h now", () => {
     res.send("Pi shutdown: done")
   })
+})
+app.post('/restart/tradr', (req, res) => {
+  foreverTradr.restart()
+  res.send("Tradr restart: done")
 })
 
 app.listen(monitorPort, () => {

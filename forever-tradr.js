@@ -19,3 +19,5 @@ foreverTradr.on('exit:code', (code) => {
     console.error('Forever detected tradr exited with code ' + code);
 })
 foreverTradr.start()
+
+exports.restart = () => foreverTradr.restart()
