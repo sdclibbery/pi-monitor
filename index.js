@@ -45,7 +45,7 @@ app.post('/restart/tradr', (req, res) => {
 })
 
 app.listen(monitorPort, () => {
-  console.log('${new Date()} pi-monitor listening on port '+monitorPort)
+  console.log(`${new Date()} pi-monitor listening on port ${monitorPort}`)
 })
 
 expose('monitor', monitorPort)
