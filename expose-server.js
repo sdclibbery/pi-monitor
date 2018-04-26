@@ -14,6 +14,7 @@ exports.expose = (name, port) => {
         console.log(`${new Date()} ${name} tunnel at: `, tunnel.url)
         tunnel.on('error', (e) => {
           console.error(`${new Date()} ${name} tunnel error: `, e)
+          tunnel.close()
         })
         tunnel.on('close', () => {
           console.error(`${new Date()} ${name} tunnel closed; relaunching`)
