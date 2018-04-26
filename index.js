@@ -44,9 +44,15 @@ app.post('/restart/tradr', (req, res) => {
   res.send("Tradr restart: done")
 })
 
-app.listen(monitorPort, () => {
+const server = app.listen(monitorPort, () => {
   console.log(`${new Date()} pi-monitor listening on port ${monitorPort}`)
 })
 
 expose('monitor', monitorPort)
 expose('tradr', tradrPort)
+
+require('node-cleanup')((exitCode, signal) => {
+  server.close()
+  foreverTradr.stop()
+  console.log(`${new Date()} pi-monitor closing with code ${exitCode} because ${signal}`)
+})

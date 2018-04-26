@@ -5,6 +5,7 @@ let foreverTradr = new forever('../tradr/index.js', {
   cwd: '../tradr',
   outFile: '../tradr/tradr.log',
   errFile: '../tradr/tradr.log',
+  append: true,
 })
 foreverTradr.on('watch:start', () => {
     console.log(`${new Date()} Forever starting tradr`);
@@ -21,3 +22,4 @@ foreverTradr.on('exit:code', (code) => {
 foreverTradr.start()
 
 exports.restart = () => foreverTradr.restart()
+exports.stop = () => foreverTradr.stop()
