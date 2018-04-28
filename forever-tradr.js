@@ -1,8 +1,9 @@
 const forever = require('forever-monitor').Monitor
 
 let foreverTradr = new forever('../tradr/index.js', {
-  silent: true,
+  max: 1000,
   cwd: '../tradr',
+  silent: true,
   outFile: '../tradr/tradr.log',
   errFile: '../tradr/tradr.log',
   append: true,
