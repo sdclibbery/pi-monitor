@@ -48,11 +48,11 @@ const server = app.listen(monitorPort, () => {
   console.log(`${new Date()} pi-monitor listening on port ${monitorPort}`)
 })
 
-const closeMonitorTunnel = expose('monitor', monitorPort)
+//const closeMonitorTunnel = expose('monitor', monitorPort)
 const closeTradrTunnel = expose('tradr', tradrPort)
 
 require('node-cleanup')((exitCode, signal) => {
-  closeMonitorTunnel()
+//  closeMonitorTunnel()
   closeTradrTunnel()
   server.close()
   foreverTradr.stop()
