@@ -8,7 +8,7 @@ exports.expose = (name, port) => {
   let launching = true
   let tunnelToClose = null
   const launch = () => {
-    if (launching) { return }
+    if (!launching) { return }
     launching = false
     if (closing) { return }
     console.log(`${new Date()} Launching ${name} tunnel`)
