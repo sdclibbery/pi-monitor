@@ -5,14 +5,12 @@ exports.expose = (name, port) => {
   const host =  os.hostname().toLowerCase().replace(/[^a-z0-9]/g, '')
   const localtunnelSubdomain = `sdclibbery-${host}-${name}`
   let closing = false
+  let launching = true
   let tunnelToClose = null
   const launch = () => {
+    if (launching) { return }
+    launching = false
     if (closing) { return }
-    if (tunnelToClose) {
-      console.log(`${new Date()} Not launching ${name} tunnel as theres already a tunnel to close`)
-      tunnelToClose.close()
-      return
-    }
     console.log(`${new Date()} Launching ${name} tunnel`)
     localtunnel(port, { subdomain: localtunnelSubdomain }, (err, tunnel) => {
       if (err) {
@@ -27,11 +25,14 @@ exports.expose = (name, port) => {
           tunnel.close()
         })
         tunnel.on('close', () => {
-          console.error(`${new Date()} ${name} tunnel closed; relaunching in 30s`)
-          setTimeout(() => {
-            tunnelToClose = null
-            launch()
-          }, 30000)
+          if (!launching) {
+            console.error(`${new Date()} ${name} tunnel closed; relaunching in 30s`)
+            launching = true
+            setTimeout(() => {
+              tunnelToClose = null
+              launch()
+            }, 30000)
+          }
         })
         if (!tunnel.url.includes(localtunnelSubdomain)) {
           console.error(`${new Date()} ${name} tunnel subdomain wrong; closing to relaunch`)
