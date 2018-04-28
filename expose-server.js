@@ -26,12 +26,12 @@ exports.expose = (name, port) => {
         })
         tunnel.on('close', () => {
           if (!launching) {
-            console.error(`${new Date()} ${name} tunnel closed; relaunching in 30s`)
+            console.error(`${new Date()} ${name} tunnel closed; relaunching in 60s`)
             launching = true
             setTimeout(() => {
               tunnelToClose = null
               launch()
-            }, 30000)
+            }, 60000)
           }
         })
         if (!tunnel.url.includes(localtunnelSubdomain)) {

@@ -10,9 +10,9 @@ exports.render = (req, res) => {
     <p>Process CPU: ${JSON.stringify(process.cpuUsage())}</p>
     <p>System Uptime: ${secondsToHms(os.uptime())}</p>
     <p>Process Uptime: ${secondsToHms(process.uptime())}</p>
-    <p><form action="/shutdown/monitor" method="POST"><input type="submit" value="Restart Monitor"></input></form></p>
-    <p><form action="/shutdown/pi" method="POST"><input type="submit" value="Shutdown Pi"></input></form></p>
-    <p><form action="/restart/tradr" method="POST"><input type="submit" value="Restart Tradr"></input></form></p>
+    <p><form action="/system/shutdown/monitor" method="POST"><input type="submit" value="Restart Monitor"></input></form></p>
+    <p><form action="/system/shutdown/pi" method="POST"><input type="submit" value="Shutdown Pi"></input></form></p>
+    <p><form action="/system/restart/tradr" method="POST"><input type="submit" value="Restart Tradr"></input></form></p>
   `))
 }
 

@@ -30,16 +30,16 @@ app.use(express.static('client'))
 
 app.get('/', require('./page-home').render)
 app.get('/system', require('./page-system-monitor').render)
-app.post('/shutdown/monitor', (req, res) => {
+app.post('/system/shutdown/monitor', (req, res) => {
   process.exit()
   res.send("Monitor shutdown: done")
 })
-app.post('/shutdown/pi', (req, res) => {
+app.post('/system/shutdown/pi', (req, res) => {
   require('child_process').exec("/sbin/shutdown -h now", () => {
     res.send("Pi shutdown: done")
   })
 })
-app.post('/restart/tradr', (req, res) => {
+app.post('/system/restart/tradr', (req, res) => {
   foreverTradr.restart()
   res.send("Tradr restart: done")
 })
@@ -48,11 +48,9 @@ const server = app.listen(monitorPort, () => {
   console.log(`${new Date()} pi-monitor listening on port ${monitorPort}`)
 })
 
-//const closeMonitorTunnel = expose('monitor', monitorPort)
 const closeTradrTunnel = expose('tradr', tradrPort)
 
 require('node-cleanup')((exitCode, signal) => {
-//  closeMonitorTunnel()
   closeTradrTunnel()
   server.close()
   foreverTradr.stop()
