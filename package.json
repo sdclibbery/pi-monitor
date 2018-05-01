@@ -14,7 +14,7 @@
     "express-basic-auth": "^1.1.4",
     "find-process": "^1.1.0",
     "forever-monitor": "^1.7.1",
-    "localtunnel": "^1.8.3",
+    "ngrok": "^3.0.1",
     "node-cleanup": "^2.1.2",
     "sqlite": "^2.9.1"
   }
